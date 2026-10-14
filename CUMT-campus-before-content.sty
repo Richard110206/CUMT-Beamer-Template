@@ -1,0 +1,41 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{CUMT-campus}[2026/10/14 CUMT campus cover]
+\RequirePackage{tikz}
+\usetikzlibrary{fadings}
+\definecolor{CUMTCoverBlue}{HTML}{1A3E8A}
+\newcommand{\CUMTCampusBackground}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south west,inner sep=0pt] at (current page.south west)
+      {\includegraphics[width=\paperwidth,height=\paperheight]{pic/cumt-traditional-gate-bg.png}};
+    \fill[white,opacity=0.93] (current page.north east)
+      rectangle ([xshift=8.3cm,yshift=-1.55cm]current page.north west);
+    \fill[white,path fading=east] ([yshift=-1.55cm]current page.north west)
+      rectangle ([xshift=11.5cm,yshift=-4.3cm]current page.north west);
+    \fill[white,path fading=east] ([yshift=1.5cm]current page.south west)
+      rectangle ([xshift=7.7cm,yshift=4.65cm]current page.south west);
+  \end{tikzpicture}%
+}
+\newcommand{\CUMTCampusIdentity}{%
+  \node[anchor=north east,inner sep=0pt] at
+    ([xshift=-0.65cm,yshift=-0.42cm]current page.north east)
+    {\includegraphics[width=5.2cm]{pic/cumt-logo-wordmark-hd.png}};
+}
+\setbeamertemplate{title page}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \CUMTCampusIdentity
+    \node[anchor=north west,inner sep=0pt,text width=9.5cm,align=left] at
+      ([xshift=0.9cm,yshift=-1.68cm]current page.north west)
+      {{\fontsize{26}{33}\selectfont\sffamily\bfseries\heiti\color{CUMTCoverBlue}\inserttitle\par}
+       \vspace{0.25cm}
+       {\fontsize{18}{25}\selectfont\heiti\color{CUMTCoverBlue}\insertsubtitle\par}
+       \vspace{0.37cm}
+       {\color{CUMTCoverBlue}\rule{2.5cm}{1.2pt}\par}};
+    \node[anchor=north west,inner sep=0pt,text width=7cm,align=left] at
+      ([xshift=0.9cm,yshift=-4.65cm]current page.north west)
+      {{\fontsize{12}{18}\selectfont\sffamily\heiti\insertauthor\par}
+       \vspace{0.27cm}
+       {\fontsize{9}{14}\selectfont\sffamily\heiti\insertinstitute\par}
+       \vspace{0.25cm}
+       {\fontsize{10}{15}\selectfont\sffamily\insertdate\par}};
+  \end{tikzpicture}%
+}
