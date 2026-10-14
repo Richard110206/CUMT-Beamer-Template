@@ -28,20 +28,27 @@
 \setbeamertemplate{blocks}[default]
 \setbeamertemplate{navigation symbols}{}
 \setbeamersize{text margin left=0.65cm,text margin right=0.65cm}
+\setbeamercolor{section in head/foot}{fg=CUMTCoverBlue,bg=white}
+\setbeamercolor{mini frame}{fg=CUMTCoverBlue,bg=white}
+\setbeamerfont{section in head/foot}{family=\heiti,size=\fontsize{7}{9}\selectfont}
+\setbeamertemplate{section in head/foot shaded}[default][45]
 \setbeamertemplate{headline}{%
-  \vskip0.28cm
-  \hbox to\paperwidth{\hskip0.65cm
-    {\color{CUMTCoverBlue!65!white}\heiti\scriptsize
-      \ifnum\insertsectionnumber>0\insertsectionhead\else 中国矿业大学\fi}
-    \hfill\includegraphics[width=3.0cm]{pic/cumt-logo-wordmark-vector.pdf}\hskip0.65cm}
-  \vskip0.16cm
+  \vskip0.20cm
+  \hbox to\paperwidth{\hskip0.65cm%
+    \begin{minipage}[c][0.9cm][c]{4.5cm}
+      \color{CUMTCoverBlue}\heiti\bfseries\fontsize{14}{17}\selectfont
+      \raggedright\ifdefined\insertframetitle\insertframetitle\fi\par
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[c][0.9cm][c]{9.85cm}
+      \insertnavigation{9.85cm}
+      \vspace{0.12cm}
+    \end{minipage}%
+    \hskip0.65cm}
+  \vskip0.12cm
   \hbox to\paperwidth{\hskip0.65cm\color{CUMTLine}\rule{\dimexpr\paperwidth-1.3cm\relax}{0.4pt}\hfil}
 }
-\setbeamertemplate{frametitle}{%
-  \vskip0.16cm
-  \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\par
-  \vskip0.12cm
-}
+\setbeamertemplate{frametitle}{}
 \setbeamertemplate{footline}{%
   \hbox to\paperwidth{\hskip0.65cm\color{CUMTLine}\rule{\dimexpr\paperwidth-1.3cm\relax}{0.4pt}\hfil}
   \vskip0.10cm
