@@ -51,7 +51,7 @@
 \end{frame}
 
 
-\section{课题背景}
+\section{项目背景}
 
 \begin{frame}{用Beamer很高大上？}
     \begin{itemize}[<+-| alert@+>] % 当然，除了alert，手动在里面插 \pause 也行
@@ -76,7 +76,7 @@
     \end{itemize}
 \end{frame}
 
-\section{研究现状}
+\section{核心技术}
 
 \subsection{美化主题}
 
@@ -378,7 +378,7 @@ $V = \frac{4}{3}\pi r^3$
 \end{frame}
 
 
-\section{计划进度}
+\section{团队成员}
 \begin{frame}
     \begin{itemize}
         \item 一月：完成文献调研
@@ -389,7 +389,7 @@ $V = \frac{4}{3}\pi r^3$
 \end{frame}
 
 
-\section{参考文献}
+\section{应用前景}
 
 \begin{frame}[allowframebreaks]
     \bibliography{ref}
@@ -398,10 +398,18 @@ $V = \frac{4}{3}\pi r^3$
     % \tiny\bibliographystyle{alpha}
 \end{frame}
 
-\begin{frame}
-    \begin{center}
-        {\Huge\calligra Thanks!}
-    \end{center}
+{
+\setbeamertemplate{background}{\CUMTThanksBackground}
+\begin{frame}{致谢}
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=center,text=CUMTCoverBlue] at
+          ([yshift=1.05cm]current page.center)
+          {{\fontsize{40}{48}\selectfont\calligra Thanks!}};
+        \node[anchor=center,text=CUMTCoverBlue] at
+          ([yshift=-1.0cm]current page.center)
+          {{\fontsize{22}{30}\selectfont\heiti 恳请各位评委批评指正}};
+    \end{tikzpicture}
 \end{frame}
+}
 
 \end{document}

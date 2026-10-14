@@ -32,16 +32,55 @@
 \setbeamercolor{mini frame}{fg=CUMTCoverBlue,bg=white}
 \setbeamerfont{section in head/foot}{family=\heiti,size=\fontsize{7}{9}\selectfont}
 \setbeamertemplate{section in head/foot shaded}[default][45]
+% Each section keeps its own slide counter, wrapping mini frames after seven.
+\newcommand{\CUMTNavigationDotsPerRow}{7}
+\newsavebox{\CUMTHeaderTitleBox}
+\makeatletter
+\newcount\cumt@dotindex
+\newcommand{\CUMTCompactNavigation}[1]{%
+  \begingroup
+    \cumt@dotindex=0\relax
+    \let\cumt@originalsectionentry\sectionentry
+    \def\sectionentry##1##2##3##4##5{%
+      \cumt@originalsectionentry{##1}{##2}{##3}{##4}{##5}%
+      \cumt@dotindex=0\relax
+    }%
+    \patchcmd{\slideentry}{\advance\beamer@xpos by1\relax}{%
+      \advance\cumt@dotindex by1\relax
+      % Integer divide gives the zero-based row; the remainder is the column.
+      \beamer@ypos=\cumt@dotindex
+      \advance\beamer@ypos by-1
+      \divide\beamer@ypos by\CUMTNavigationDotsPerRow
+      \beamer@xpos=\numexpr\cumt@dotindex-\beamer@ypos*\CUMTNavigationDotsPerRow\relax
+      \advance\beamer@ypos by1\relax
+    }{}{\PackageError{CUMT-campus}{Cannot wrap navigation dots}{Check the Beamer slideentry definition.}}%
+    \patchcmd{\slideentry}{\global\beamer@section@min@dim\beamer@tempdim}{%
+      \ifdim\beamer@tempdim>\beamer@section@min@dim
+        \global\beamer@section@min@dim\beamer@tempdim
+      \fi
+    }{}{\PackageError{CUMT-campus}{Cannot measure navigation dots}{Check the Beamer slideentry definition.}}%
+    \insertnavigation{#1}%
+  \endgroup
+}
+\makeatother
 \setbeamertemplate{headline}{%
   \vskip0.20cm
   \hbox to\paperwidth{\hskip0.65cm%
-    \begin{minipage}[c][0.9cm][c]{4.5cm}
+    \begin{minipage}[c][0.9cm][c]{7.0cm}
       \color{CUMTCoverBlue}\heiti\bfseries\fontsize{14}{17}\selectfont
-      \raggedright\ifdefined\insertframetitle\insertframetitle\fi\par
+      \raggedright
+      \ifdefined\insertframetitle
+        \sbox{\CUMTHeaderTitleBox}{\insertframetitle}%
+        \ifdim\wd\CUMTHeaderTitleBox>\linewidth
+          \resizebox{\linewidth}{!}{\usebox{\CUMTHeaderTitleBox}}%
+        \else
+          \usebox{\CUMTHeaderTitleBox}%
+        \fi
+      \fi\par
     \end{minipage}%
     \hfill%
-    \begin{minipage}[c][0.9cm][c]{9.85cm}
-      \insertnavigation{9.85cm}
+    \begin{minipage}[c][0.9cm][c]{7.35cm}
+      \CUMTCompactNavigation{7.35cm}
       \vspace{0.12cm}
     \end{minipage}%
     \hskip0.65cm}
@@ -77,6 +116,13 @@
   \end{tikzpicture}%
 }
 \setbeamertemplate{background}{\CUMTContentBackground}
+\newcommand{\CUMTThanksBackground}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=center,inner sep=0pt,opacity=\CUMTContentBackgroundOpacity]
+      at (current page.center)
+      {\includegraphics[width=\paperwidth,height=\paperheight]{pic/cumt-thanks-gate-bg.png}};
+  \end{tikzpicture}%
+}
 \newcommand{\CUMTCampusBackground}{%
   \begin{tikzpicture}[remember picture,overlay]
     \node[anchor=south west,inner sep=0pt] at (current page.south west)
