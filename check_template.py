@@ -27,7 +27,7 @@ def main():
             errors.append(f'Template asset changed: {name}')
 
     # Pass all content files explicitly when using a different entry or extra inputs.
-    names = sys.argv[1:] or ['starter.tex', 'content.tex']
+    names = sys.argv[1:] or ['slide.tex', 'content.tex']
     sources = []
     forbidden = re.compile(
         r'\\(?:setbeamertemplate|addtobeamertemplate|defbeamertemplate\*?|'
@@ -61,7 +61,7 @@ def main():
         print('\n'.join(errors))
         return 1
     print('PASS: protected template assets and content entry checks.')
-    print('Compile twice with XeLaTeX and visually check artwork, navigation and layout.')
+    print('Compile with XeLaTeX until references stabilize; visually check artwork, navigation and layout.')
     return 0
 
 

@@ -23,3 +23,10 @@
 *.fls
 *.fdb_latexmk
 *.xdv
+
+# Keep the published preview; other root PDFs are local compilation outputs.
+/*.pdf
+!/slide.pdf
+
+# Python cache
+__pycache__/

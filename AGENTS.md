@@ -4,8 +4,8 @@
 
 当用户说“用这个模板”“基于模板制作”“替换文字”“填入报告”，按套用模板处理。用户没有指定模式时也默认套用模板。“美化内容”“调整排版”“精简页面”本身不代表允许重新设计主题。
 
-- 阅读 README.md。新报告使用 starter.tex 作为入口，替换 content.tex 的内容；slide.tex 是完整功能示例。
-- 可编辑 starter.tex 中标出的报告信息与致谢文案，以及 content.tex 中的章节、标题、正文、公式、表格和业务插图。允许在内容文件中添加必要的内容宏包，不能用它们覆盖主题。
+- 阅读 README.md。slide.tex 是唯一编译入口，content.tex 提供完整正文示例；制作新报告时替换报告信息和正文内容。
+- 可编辑 slide.tex 中标出的报告信息与致谢文案，以及 content.tex 中的章节、标题、正文、公式、表格和业务插图。允许在内容文件中添加必要的内容宏包，不能用它们覆盖主题。
 - 保留加载顺序：CUMT 在前，CUMT-campus 在后。保留 16:9、ctex 和 XeLaTeX。
 - 保留入口中的 \CUMTMakeTitle、\CUMTMakeThanks 和目录页；使用 \section 生成真实的章节导航。章节名称和数量可随内容改变，不必保留示例中的五个名称。
 - 正文和致谢页保留顶部章节导航及进度圆点、页脚；正文使用普通 frame。封面由主题命令内部使用 plain，这是设计的一部分。
@@ -14,7 +14,7 @@
 - 不因溢出而通过 plain、清空背景或删除导航解决；优先精简内容、拆页、分栏或局部调整字号。
 - 致谢文案通过 \renewcommand{\CUMTThanksEnglish}{...} 和 \renewcommand{\CUMTThanksChinese}{...} 修改。封面文字使用标准标题、作者、学院与日期命令修改。
 
-交付前运行 `python check_template.py`（完整示例用 `python check_template.py slide.tex`），然后用 XeLaTeX 至少编译两遍；若日志仍提示 `Label(s) may have changed`，继续编译至辅助文件稳定，首次新报告通常需要三遍。抽查封面、目录、正文、致谢，确认白描图、导航及页脚可见，内容无溢出。检查失败时修复内容层，不重新生成锁文件来绕过检查。脚本是静态检查，不能代替 PDF 目视检查。
+交付前运行 `python check_template.py`，默认检查 slide.tex 与 content.tex，然后用 XeLaTeX 至少编译两遍；若日志仍提示 `Label(s) may have changed`，继续编译至辅助文件稳定，首次新报告通常需要三遍。示例正文包含参考文献，首次编译或修改引用后运行 BibTeX，再继续编译。抽查封面、目录、正文、致谢，确认白描图、导航及页脚可见，内容无溢出。检查失败时修复内容层，不重新生成锁文件来绕过检查。脚本是静态检查，不能代替 PDF 目视检查。
 
 ## 重新设计模式
 
