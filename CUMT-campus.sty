@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{CUMT-campus}[2026/10/14 CUMT campus cover]
+\ProvidesPackage{CUMT-campus}[2026/10/15 CUMT campus theme]
 \RequirePackage{tikz}
 \usetikzlibrary{fadings}
 \definecolor{CUMTCoverBlue}{HTML}{1A3E8A}
@@ -158,4 +158,39 @@
        \vspace{0.25cm}
        {\fontsize{10}{15}\selectfont\sffamily\insertdate\par}};
   \end{tikzpicture}%
+}
+% Public page commands: keep the artwork and layout in the theme layer.
+% Content authors only change metadata and the two closing strings.
+\IfFontExistsTF{TeX Gyre Pagella}{%
+  \newfontfamily\CUMTThanksLatin{TeX Gyre Pagella}%
+}{%
+  \newfontfamily\CUMTThanksLatin{Latin Modern Roman}%
+}
+\newcommand{\CUMTThanksEnglish}{Thanks!}
+\newcommand{\CUMTThanksChinese}{恳请各位评委批评指正}
+\newcommand{\CUMTMakeTitle}{%
+  \begingroup
+    \setbeamertemplate{background}{\CUMTCampusBackground}%
+    \begin{frame}[plain]
+      \titlepage
+    \end{frame}
+  \endgroup
+}
+\newcommand{\CUMTMakeThanks}{%
+  \begingroup
+    \setbeamertemplate{background}{\CUMTThanksBackground}%
+    \begin{frame}{致谢}
+      \begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=center,text=CUMTCoverBlue,inner sep=0pt] at
+          ([yshift=0.95cm]current page.center)
+          {{\CUMTThanksLatin\mdseries\itshape\fontsize{38}{46}\selectfont\CUMTThanksEnglish}};
+        \draw[CUMTCoverBlue!55!white,line width=0.7pt]
+          ([xshift=-0.65cm,yshift=0.05cm]current page.center) --
+          ([xshift=0.65cm,yshift=0.05cm]current page.center);
+        \node[anchor=center,text=CUMTInk,inner sep=0pt] at
+          ([yshift=-0.78cm]current page.center)
+          {{\songti\mdseries\ziju{0.10}\fontsize{20}{30}\selectfont\CUMTThanksChinese}};
+      \end{tikzpicture}
+    \end{frame}
+  \endgroup
 }

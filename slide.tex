@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc}
 
 % other packages
-\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs}
 \usepackage{graphicx,pstricks,listings,stackengine}
 
 \author{李沁轩}
@@ -38,13 +38,8 @@
 \begin{document}
 
 \heiti
-{
-\setbeamertemplate{background}{\CUMTCampusBackground}
-\setbeamertemplate{navigation symbols}{}
-\begin{frame}[plain]
-    \titlepage
-\end{frame}
-}
+% 封面由主题生成；只需修改导言区的标题、作者等信息。
+\CUMTMakeTitle
 
 \begin{frame}{目录}
     \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
@@ -398,18 +393,7 @@ $V = \frac{4}{3}\pi r^3$
     % \tiny\bibliographystyle{alpha}
 \end{frame}
 
-{
-\setbeamertemplate{background}{\CUMTThanksBackground}
-\begin{frame}{致谢}
-    \begin{tikzpicture}[remember picture,overlay]
-        \node[anchor=center,text=CUMTCoverBlue] at
-          ([yshift=1.05cm]current page.center)
-          {{\fontsize{40}{48}\selectfont\calligra Thanks!}};
-        \node[anchor=center,text=CUMTCoverBlue] at
-          ([yshift=-1.0cm]current page.center)
-          {{\fontsize{22}{30}\selectfont\heiti 恳请各位评委批评指正}};
-    \end{tikzpicture}
-\end{frame}
-}
+% 如需替换致谢文案，在导言区重定义 \CUMTThanksEnglish / \CUMTThanksChinese。
+\CUMTMakeThanks
 
 \end{document}
