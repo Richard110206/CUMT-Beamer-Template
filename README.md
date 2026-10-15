@@ -38,7 +38,7 @@
 
 ## 相对原版模板的优化
 
-在[学长原版 CUMT Beamer 模板](https://www.overleaf.com/latex/templates/CUMT-beamer-theme/ybqzdsgvrfdq)的基础上：
+在学长原版 CUMT Beamer 模板的基础上：
 
 - 封面、正文、致谢页背景换成本校建筑的**白描线稿**（校门牌楼 + 图书馆），由 AI 生成 PNG；校徽与校名组合图描摹为矢量路径
 - 重新设计配色（矿大蓝 `#1A3E8A`）、标题黑体、页眉导航与页脚样式
@@ -149,5 +149,5 @@ starter.pdf                  # 精简起步版效果预览
 
 ## 致谢
 
-- 感谢学长提供的[原版 CUMT Beamer 模板](https://www.overleaf.com/latex/templates/CUMT-beamer-theme/ybqzdsgvrfdq)
+- 感谢学长提供的原版 CUMT Beamer 模板
 - 白描背景图由 AI 生成，[pic/](pic/) 目录内附生成说明
